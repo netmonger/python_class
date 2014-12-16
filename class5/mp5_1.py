@@ -11,18 +11,12 @@ Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
                                  S - Switch, H - Host, I - IGMP, r - Repeater,
 P - Phone
 
-Device ID            Local Intrfce        Holdtme        Capability
-Platform    Port ID
-R1                    Fas 0/11              153            R S I           881
-Fas 1
-R2                    Fas 0/12              123            R S I           881
-Fas 1
-R3                    Fas 0/13              129            R S I           881
-Fas 1
-R4                    Fas 0/14              173            R S I           881
-Fas 1
-R5                    Fas 0/15              144            R S I           881
-Fas 1
+Device ID            Local Intrfce        Holdtme        Capability        Platform    Port ID
+R1                    Fas 0/11              153            R S I           881		Fas 1
+R2                    Fas 0/12              123            R S I           881		Fas 1
+R3                    Fas 0/13              129            R S I           881		Fas 1
+R4                    Fas 0/14              173            R S I           881		Fas 1
+R5                    Fas 0/15              144            R S I           881		Fas 1
 
 '''
 
@@ -325,4 +319,17 @@ Native VLAN: 1
 Duplex: full
 
 '''
+
+network_devices = {}
+
+
+devices = sw1_show_cdp_neighbors_detail.split("--------------------------")
+print devices[0]
+
+for x in devices:
+	print devices[x]
+
+
+
+
 
