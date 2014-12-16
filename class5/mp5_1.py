@@ -326,8 +326,9 @@ network_devices = {}
 devices = sw1_show_cdp_neighbors_detail.split("--------------------------")
 print devices[0]
 
-for x in devices:
-	print devices[x]
+for line in devices:
+	if "Device ID:" in line:
+		print line.split()[2]
 
 
 
