@@ -322,13 +322,30 @@ Duplex: full
 
 network_devices = {}
 
-
 devices = sw1_show_cdp_neighbors_detail.split("--------------------------")
-print devices[0]
 
-for line in devices:
-	if "Device ID:" in line:
-		print line.split()[2]
+for device in devices:
+	device_details = device.split("\n")
+	for item in device_details:
+		if "Device ID:" in item:
+			device_name = item.split()[2]
+			print device_name
+		if "IP address" in item:
+			device_ip = item.split()[2]
+			print device_ip
+		if "Platform" in item:
+			device_model = (item.split()[2])[:-1]
+			device_vendor = item.split()[1]
+			print device_model
+			print device_vendor
+		if "Capabilities" in item:
+			if "Router" in item:
+				device_type = "router"
+				print device_type
+			else:
+				device_type = "switch"
+				print device_type
+
 
 
 
