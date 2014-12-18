@@ -348,10 +348,28 @@ for device in devices:
 
 
 devices = r1_show_cdp_neighbors_detail
+print devices
 
-
-
-
-
+for device in devices:
+	device_details = device.split("\n")
+	for item in device_details:
+		if "Device ID:" in item:
+                        device_name = item.split()[2]
+			network_devices[device_name] = {}
+		if "IP address" in item:
+			device_ip = item.split()[2]
+			network_devices[device_name]['ip'] = device_ip
+		if "Platform" in item:
+			device_model = (item.split()[2])[:-1]
+			device_vendor = item.split()[1]
+                        network_devices[device_name]['model'] = device_model
+                        network_devices[device_name]['vendor'] = device_vendor
+		if "Capabilities" in item:
+			if "Router" in item:
+				device_type = "router"
+                                network_devices[device_name]['device_type'] = 'router'
+			else:
+				device_type = "switch"
+                                network_devices[device_name]['device_type'] = 'switch'
 
 pprint.pprint(network_devices)
