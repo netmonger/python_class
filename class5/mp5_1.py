@@ -329,22 +329,20 @@ for device in devices:
 	for item in device_details:
 		if "Device ID:" in item:
 			device_name = item.split()[2]
-			print device_name
+			network_devices[device_name] = {}
 		if "IP address" in item:
 			device_ip = item.split()[2]
-			print device_ip
+			network_devices[device_name]['ip'] = device_ip
 		if "Platform" in item:
 			device_model = (item.split()[2])[:-1]
 			device_vendor = item.split()[1]
-			print device_model
-			print device_vendor
 		if "Capabilities" in item:
 			if "Router" in item:
 				device_type = "router"
-				print device_type
 			else:
 				device_type = "switch"
-				print device_type
+		
+print network_devices
 
 
 
