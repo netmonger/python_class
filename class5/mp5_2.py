@@ -370,8 +370,14 @@ for item in device_details:
                         network_devices[device_name]['device_type'] = 'switch'
 
 
-sw1_adjacent = sw1_show_cdp_neighbors.split("\n")
+sw1_adjacent = sw1_show_cdp_neighbors.split("Device ID")[1].split("\n")
+r1_adjacent = r1_show_cdp_neighbors.split("\n")
+r2_adjacent = r2_show_cdp_neighbors.split("\n")
+r3_adjacent = r3_show_cdp_neighbors.split("\n")
+r4_adjacent = r4_show_cdp_neighbors.split("\n")
+r5_adjacent = r5_show_cdp_neighbors.split("\n")
 
+# network_devices[SW1]['adjecent devices'] = 
 
 
 pprint.pprint(network_devices)
