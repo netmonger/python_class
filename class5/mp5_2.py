@@ -369,15 +369,28 @@ for item in device_details:
 			device_type = "switch"
                         network_devices[device_name]['device_type'] = 'switch'
 
+# Take adjacency list and remove unnecessary characters
+sw1_adjacent = sw1_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
+r1_adjacent = r1_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
+r2_adjacent = r2_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
+r3_adjacent = r3_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
+r4_adjacent = r4_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
+r5_adjacent = r5_show_cdp_neighbors.split("Port ID")[1].strip().split("\n")
 
-sw1_adjacent = sw1_show_cdp_neighbors.split("Port ID")[1].split("\n")
-r1_adjacent = r1_show_cdp_neighbors.split("Port ID")[1].split("\n")
-r2_adjacent = r2_show_cdp_neighbors.split("Port ID")[1].split("\n")
-r3_adjacent = r3_show_cdp_neighbors.split("Port ID")[1].split("\n")
-r4_adjacent = r4_show_cdp_neighbors.split("Port ID")[1].split("\n")
-r5_adjacent = r5_show_cdp_neighbors.split("Port ID")[1].split("\n")
 
-# network_devices[SW1]['adjecent devices'] = 
+# Cycle through all adjacent devices for SW1
+i = 0
+network_devices["SW1"]['adjacent devices'] = []
+while i < len(sw1_adjacent):
+	network_devices["SW1"]['adjacent devices'].append(sw1_adjacent[i].split()[0])
+	#sw1_adjacent = sw1_adjacent[1].split()[0]
+	i+=1
 
+# Adjacent devices for Routers
+network_devices["R1"]['adjacent devices'] = [r1_adjacent[0].split()[0]]
+network_devices["R2"]['adjacent devices'] = [r2_adjacent[0].split()[0]]
+network_devices["R3"]['adjacent devices'] = [r3_adjacent[0].split()[0]]
+network_devices["R4"]['adjacent devices'] = [r4_adjacent[0].split()[0]]
+network_devices["R5"]['adjacent devices'] = [r5_adjacent[0].split()[0]]
 
 pprint.pprint(network_devices)
