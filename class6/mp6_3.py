@@ -6,17 +6,17 @@ import sys
     # Exit the script
     #sys.exit("Usage: ./ex4_ip_address_valid.py <ip_address>")
 
-while True:
-    ip_addr = raw_input("Please enter an IP address: ")
-    
+def check_ip(ip_addr):
+
     valid_ip = True
 
     # Make sure IP has four octets
     octets = ip_addr.split('.')
     if len(octets) != 4:
         #sys.exit("\n\nInvalid IP address: %s\n" % ip_addr)
-        print "\nInvalid IP address\n"
-        continue
+        #print "\nInvalid IP address\n"
+	return False
+        #continue
 
     # convert octet from string to int
     for i,octet in enumerate(octets):
@@ -30,7 +30,8 @@ while True:
             # couldn't convert octet to an integer
             #sys.exit("\n\nInvalid IP address: %s\n" % ip_addr)
             #print "\n\nInvalid IP address"
-            continue
+	    return False
+            #continue
 
 
     # map variables to elements of octets list
@@ -55,9 +56,11 @@ while True:
 
 
     if valid_ip:
-        print "\nThe IP address is valid: %s\n" % ip_addr
-        break
+        #print "\nThe IP address is valid: %s\n" % ip_addr
+        # break
+	return True
     else:
         #sys.exit("\n\nInvalid IP address: %s\n" % ip_addr)
-        print "\nInvalid IP address\n"
-        continue
+        #print "\nInvalid IP address\n"
+        #continue
+	return False
